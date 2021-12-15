@@ -1,0 +1,589 @@
+import numpy as np
+import scipy.spatial
+import pandas as pd
+from io import StringIO
+# №34
+print('*'*250)
+print('#34')
+dates34 = []
+for i in range(31):
+    dates34.append(str('2016/07/')+str(i+1))
+print(dates34)
+print('*'*250)
+# №35
+print('*'*250)
+print('#35')
+A35 = np.random.uniform(0, 1, (2, 2))
+B35 = np.random.uniform(0, 1, (2, 2))
+print((A35+B35)@(-A35/2))
+print('*'*250)
+# №36
+print('*'*250)
+print('#36')
+a36 = np.random.uniform(0, 10, 10)
+print(a36 - a36 % 1)
+print(a36 // 1)
+print(np.floor(a36))
+for i in range(len(a36)):
+    a36[i] = int(a36[i])
+print(a36)
+print('*'*250)
+# №37
+print('*'*250)
+print('#37')
+a37 = np.zeros((5, 5))
+for i in range(5):
+    for j in range(5):
+        a37[i][j] = j
+print(a37)
+print('*'*250)
+# №39
+print('*'*250)
+print('#39')
+a39 = np.linspace(0, 1, 12)[1:11]
+print(a39)
+print('*'*250)
+# №40
+print('*'*250)
+print('#40')
+a40 = np.random.random(10)
+print(sorted(a40))
+print('*'*250)
+# №41
+print('*'*250)
+print('#41')
+print(np.add.reduce(np.arange(5)))
+print('*'*250)
+# №42
+print('*'*250)
+print('#42')
+A42 = np.random.randint(0, 2, 2)
+B42 = np.random.randint(0, 2, 2)
+if np.linalg.norm(A42 - B42) == 0:
+    print('equal')
+else:
+    print('not equal')
+print('*'*250)
+# №43
+print('*'*250)
+print('#43')
+a43 = np.random.random(5)
+a43.flags.writeable = False
+#a43[0] = 0 получим ошибку записи
+print('*'*250)
+# №44
+print('*'*250)
+print('#44')
+a44 = np.random.random((10, 2))
+x, y = a44[:, 0], a44[:, 1]
+R, T = np.sqrt(x**2 + y**2), np.arctan2(y, x)
+print('R=\n', R, '\n', 'T=\n', T)
+print('*'*250)
+# №45
+print('*'*250)
+print('#45')
+a45 = np.random.random(10)
+print(a45)
+for i in range(10):
+    if a45[i] == max(a45):
+        a45[i] = 0
+print(a45)
+print('*'*250)
+# №46
+print('*'*250)
+print('#46')
+a46 = np.zeros((5, 5), [('1', float), ('2', float)])
+a46['1'], a46['2'] = np.meshgrid(np.linspace(0, 1, 5), np.linspace(0, 1, 5))
+print(a46)
+print('*'*250)
+# №47
+print('*'*250)
+print('#47')
+x = np.random.random((2, 2))
+y = np.random.random((2, 2))*10
+C = 1.0 / np.subtract.outer(x, y)
+print(C)
+print('*'*250)
+# №48
+print('*'*250)
+print('#48')
+for i in [np.int8, np.int32, np.int64]:
+   print(np.iinfo(i).min)
+   print(np.iinfo(i).max)
+for i in [np.float32, np.float64]:
+   print(np.finfo(i).min)
+   print(np.finfo(i).max)
+   print(np.finfo(i).eps)
+print('*'*250)
+# №49
+print('*'*250)
+print('#49')
+np.set_printoptions(threshold=np.inf)
+a49 = np.zeros((10**2, 10**2))
+print(a49)
+print('*'*250)
+# №50
+print('*'*250)
+print('#50')
+A50 = np.arange(50)
+B50 = np.random.uniform(0, 50)
+index = np.argmin((np.abs(A50-B50)))
+print(A50[index])
+print('*'*250)
+# №51
+print('*'*250)
+print('#51')
+a51 = np.zeros(51, [('position', [('x', float, 1), ('y', float, 1)]), ('color', [('red', float, 1), ('green', float, 1),
+                                                                               ('blue', float, 1)])])
+print(a51)
+print('*'*250)
+# №52
+print('*'*250)
+print('#52')
+a52 = np.random.random((10, 2))
+distance = scipy.spatial.distance.cdist(a52, a52)
+print(distance)
+print('*'*250)
+# №54
+print('*'*250)
+print('#54')
+
+s = StringIO('''1, 2, 3, 4, 5
+
+                6,  ,  , 7, 8
+
+                 ,  , 9,10,11
+''')
+a54 = pd.read_csv(s, delimiter=",", dtype='a')
+print(a54)
+print('*'*250)
+# №55
+print('*'*250)
+print('#55')
+a55 = np.arange(9).reshape(3, 3)
+print(a55)
+for i, j in np.ndenumerate(a55):
+    print(i, j)
+print('*'*250)
+# №56
+print('*'*250)
+print('#56')
+X, Y = np.meshgrid(np.linspace(0, 1, 10), np.linspace(0, 1, 10))
+a56 = X*X+Y*Y
+print(np.exp(-(a56 / (2))))
+print('*'*250)
+# №57
+print('*'*250)
+print('#57')
+n = 5
+p = 3
+a57 = np.zeros((n, n))
+np.put(a57, np.random.choice(range(n**2), p, replace=False), 1)
+print(a57)
+print('*'*250)
+# №58
+print('*'*250)
+print('#58')
+a58 = np.random.rand(5, 10)
+a1 = a58.copy()
+for i in range(5):
+    a58[i] = a1[i] - a1[i].mean()
+print(a58)
+print('*'*250)
+# №59
+print('*'*250)
+print('#59')
+a59 = np.random.randint(0, 10, (3, 3))
+print(a59)
+print(a59[a59[:, 1].argsort()])
+print('*'*250)
+# №60
+print('*'*250)
+print('#60')
+a60 = np.random.randint(0, 2, (2, 2))
+for i in range(2):
+    if np.linalg.norm(a60[:][i]) == 0:
+        print('null column detected')
+    else:
+        print('null column not detected')
+print('*'*250)
+# №61
+print('*'*250)
+print('#61')
+a61 = np.random.uniform(0, 1, 10)
+a111 = 0.61
+print(a61.flat[np.abs(a61 - a111).argmin()])
+print('*'*250)
+# №62
+print('*'*250)
+print('#62')
+A62 = np.arange(3).reshape(3, 1)
+B62 = np.arange(3).reshape(1, 3)
+iterator = np.nditer([A62, B62, None])
+for i, j, k in iterator: k[...] = i + j
+print(iterator.operands[2])
+print('*'*250)
+# №63
+print('*'*250)
+print('#63')
+
+
+class NamedArray(np.ndarray):
+    def __new__(cls, array, name="no name"):
+        obj = np.asarray(array).view(cls)
+        obj.name = name
+        return obj
+
+    def __array_finalize__(self, obj):
+        if obj is None: return
+        self.info = getattr(obj, 'name', "no name")
+
+
+a63 = NamedArray(np.arange(63), "range_63")
+print(a63.name)
+print('*'*250)
+# №64
+print('*'*250)
+print('#64')
+a64 = np.zeros(10)
+k1 = []
+B = np.random.randint(0, len(a64), 10)
+range1 = np.arange(0, 10)
+for i in range(10):
+    k = 0
+    for j in range(10):
+        if range1[i] == B[j]:
+            k += 1
+    k1.append(k)
+print(a64 + k1)
+print('*'*250)
+# №65
+print('*'*250)
+print('#65')
+X = [1, 2, 3, 4]
+I = [4, 3, 2, 1]
+F = np.bincount(I, X)
+print(F)
+print('*'*250)
+# №66
+print('*'*250)
+print('#66')
+width, height = 256, 256
+image = np.random.randint(0, 4, (height, width, 3)).astype(np.ubyte)
+colors = np.unique(image.reshape(-1, 3), axis=0)
+print(len(colors))
+print('*'*250)
+# №67
+print('*'*250)
+print('#67')
+a67 = np.random.randint(0, 10, (6, 7, 6, 7))
+print(a67.sum(axis=(-2, -1)))
+print('*'*250)
+# №68
+print('*'*250)
+print('#68')
+A68 = np.random.uniform(0, 1, 68)
+B68 = np.random.randint(0, 10, 68)
+print(pd.Series(A68).groupby(B68).mean())
+print('*'*250)
+# №69
+print('*'*250)
+print('#69')
+A69 = np.random.uniform(0, 1, (6, 6))
+B69 = np.random.uniform(0, 1, (6, 6))
+print(np.dot(A69, B69))
+print('*'*250)
+# №70
+print('*'*250)
+print('#70')
+a70 = np.array([1, 2, 3, 4, 5])
+z = np.zeros(len(a70)+3*4)
+z[0] = a70[0]
+z[4] = a70[1]
+z[8] = a70[2]
+z[12] = a70[3]
+z[16] = a70[4]
+print(z)
+print('*'*250)
+# №71
+print('*'*250)
+print('#71')
+A71 = np.random.randint(0, 10, (5, 5, 3))
+B71 = np.random.randint(0, 10, (5, 5))
+print(A71 * B71[:, :, None])
+print('*'*250)
+# №72
+print('*'*250)
+print('#72')
+a72 = np.random.randint(0, 10, (5, 5))
+a72[[0, 1]] = a72[[1, 0]]
+print(a72)
+print('*'*250)
+# №73
+print('*'*250)
+print('#73')
+a73 = np.random.randint(0, 73, (10, 3))
+B73 = np.roll(a73.repeat(2, axis=1), -1, axis=1)
+B73 = np.sort(B73.reshape(len(B73)*3, 2), axis=1)
+G = B73.view(dtype=[('p0', B73.dtype), ('p1', B73.dtype)])
+G = np.unique(G)
+print(G)
+print('*'*250)
+# №74
+print('*'*250)
+print('#74')
+a74 = np.bincount([74, 74, 73, 73, 72])
+b74 = np.repeat(np.arange(len(a74)), a74)
+print(b74)
+print('*'*250)
+# №75
+print('*'*250)
+print('#75')
+
+
+def zad_75(a):
+    n = 3
+    ret = np.cumsum(a, dtype=float)
+    ret[n:] = ret[n:] - ret[:-n]
+    return ret[n - 1:] / n
+
+
+a75 = np.arange(20)
+print(zad_75(a75))
+print('*'*250)
+# №76
+print('*'*250)
+print('#76')
+
+
+def zad_76(a, window):
+    shape = (a.size - window + 1, window)
+    strides = (a.strides[0], a.strides[0])
+    return np.lib.stride_tricks.as_strided(a, shape=shape, strides=strides)
+
+
+print(zad_76(np.arange(10), 3))
+print('*'*250)
+# №77
+print('*'*250)
+print('#77')
+a77 = np.random.randint(0, 2, 77)
+print(a77)
+
+for i in range(len(a77)):
+    if a77[i] == 0:
+        a77[i] = 1
+    else:
+        a77[i] = 0
+print(a77)
+print('*'*250)
+# №78
+print('*'*250)
+print('#78')
+P0 = np.random.uniform(-78, 78, (10, 2))
+P1 = np.random.uniform(-78, 78, (10, 2))
+p = np.random.uniform(-78, 78, (1, 2))
+A78 = P1 - P0
+B78 = (A78 ** 2).sum(axis=1)
+D78 = -((P0[:, 0] - p[..., 0]) * A78[:, 0] + (P0[:, 1] - p[..., 1]) * A78[:, 1]) / B78
+D78 = D78.reshape(len(D78), 1)
+result1 = P0 + D78 * A78 - p
+print(np.sqrt((result1 ** 2).sum(axis=1)))
+print('*'*250)
+# №79
+print('*'*250)
+print('#79')
+a79 = []
+p = np.random.uniform(-78, 78, (10, 2))
+for i in range(len(p)):
+    A79 = P1 - P0
+    B79 = (A79 ** 2).sum(axis=1)
+    D79 = -((P0[:, 0] - p[..., 0]) * A79[:, 0] + (P0[:, 1] - p[..., 1]) * A79[:, 1]) / B79
+    D79 = D79.reshape(len(D79), 1)
+    result1 = P0 + D79 * A79 - p
+    a79.append(np.sqrt((result1 ** 2).sum(axis=1)))
+print(a79)
+print('*'*250)
+# №80
+print('*'*250)
+print('#80')
+A80 = np.random.randint(0, 10, (10, 10))
+shape = (5, 5)
+position = (1, 1)
+fill = 0
+R80 = np.ones(shape, dtype=A80.dtype)*fill
+P80 = np.array(list(position)).astype(int)
+R802 = np.array(list(R80.shape)).astype(int)
+B80 = np.array(list(A80.shape)).astype(int)
+R_start = np.zeros((len(shape),)).astype(int)
+R_stop = np.array(list(shape)).astype(int)
+Z_start = (P80-R802 // 2)
+Z_stop = (P80+R802 // 2)+R802 % 2
+R_start = (R_start - np.minimum(Z_start, 0)).tolist()
+Z_start = (np.maximum(Z_start, 0)).tolist()
+R_stop = np.maximum(R_start, (R_stop - np.maximum(Z_stop-B80, 0))).tolist()
+Z_stop = (np.minimum(Z_stop, B80)).tolist()
+r = [slice(start, stop) for start, stop in zip(R_start, R_stop)]
+z = [slice(start, stop) for start, stop in zip(Z_start, Z_stop)]
+R80[r] = A80[z]
+print(A80)
+print(R)
+print('*'*250)
+# №81
+print('*'*250)
+print('#81')
+A81 = np.arange(1, 15, dtype=np.uint32)
+print(np.lib.stride_tricks.as_strided(A81, (11, 4), (4, 4)))
+print('*'*250)
+# №82
+print('*'*250)
+print('#82')
+A82 = np.random.normal(-82, 82, (10, 10))
+print(np.linalg.matrix_rank(A82))
+print('*'*250)
+# №83
+print('*'*250)
+print('#83')
+print(np.bincount(np.random.randint(0, 83, 83)).argmax())
+print('*'*250)
+# №84
+print('*'*250)
+print('#84')
+A84 = np.random.randint(0, 5, (10, 10))
+i = 1 + (A84.shape[0]-3)
+j = 1 + (A84.shape[1]-3)
+C = np.lib.stride_tricks.as_strided(A84, shape=(i, j, 3, 3), strides=A84.strides + A84.strides)
+print(C)
+print('*'*250)
+# №85
+print('*'*250)
+print('#85')
+
+
+class Sym(np.ndarray):
+    def __setitem__(self, index, value):
+        i, j = index
+        super(Sym, self).__setitem__((i, j), value)
+        super(Sym, self).__setitem__((j, i), value)
+
+
+def symetric(Z):
+    return np.asarray(Z + Z.T - np.diag(Z.diagonal())).view(Sym)
+
+
+S = symetric(np.random.randint(0, 85, (3, 3)))
+S[0, 0] = 85
+print(S)
+print('*'*250)
+# №86
+print('*'*250)
+print('#86')
+p = np.random.randint(2, 10)
+n = np.random.randint(2, 10)
+A86 = np.ones((p, n, n))
+B86 = np.ones((p, n, 1))
+print(np.tensordot(A86, B86, axes=[[0, 2], [0, 1]]))
+print('*'*250)
+# №87
+print('*'*250)
+print('#87')
+A87 = np.random.randint(0, 87, (16, 16))
+windows = np.lib.stride_tricks.sliding_window_view(A87, (4, 4))
+print(windows[::4, ::4, ...].sum(axis=(-2, -1)))
+print('*'*250)
+# №89
+print('*'*250)
+print('#89')
+A89 = np.arange(89)
+n = np.random.randint(2, 10)
+A89 = sorted(A89, reverse=True)
+print(A89[:n])
+print('*'*250)
+# №90
+print('*'*250)
+print('#90')
+
+
+def cartesian(arrays):
+    arrays = [np.asarray(a) for a in arrays]
+    shape = (len(x) for x in arrays)
+
+    ix = np.indices(shape, dtype=int)
+    ix = ix.reshape(len(arrays), -1).T
+
+    for n, arr in enumerate(arrays):
+        ix[:, n] = arrays[n][ix[:, n]]
+
+    return ix
+
+
+print(cartesian(([1.0, 2.0, 3.0], [4.0, 5.0], [6.0, 7.0])))
+print('*'*250)
+# №91
+print('*'*250)
+print('#91')
+A91 = np.array([("Hello", 9.1, 91), ("World", 1.9, 19)])
+A91 = A91.T
+B91 = np.core.records.fromarrays(A91, names='col1, col2, col3', formats='S80, f8, i8')
+print(B91)
+print('*'*250)
+# №92
+print('*'*250)
+print('#92')
+x = np.random.rand(int(9**2))
+print(x*x*x, '\n', np.power(x, 3), '\n', np.einsum('i,i,i->i', x, x, x))
+print('*'*250)
+# №93
+print('*'*250)
+print('#93')
+A93 = np.random.randint(0, 5, (8, 3))
+B93 = np.random.randint(0, 5, (2, 2))
+res93 = (A93[..., np.newaxis, np.newaxis] == B93)
+print(np.where(res93.any((3, 1)).all(1))[0])
+print('*'*250)
+# №94
+print('*'*250)
+print('#94')
+A94 = np.random.randint(0, 5, (10, 3))
+print(A94[A94.max(axis=1) != A94.min(axis=1), :])
+print('*'*250)
+# №95
+print('*'*250)
+print('#95')
+A95 = np.array([0, 1, 2, 3, 4, 5, 6], dtype=np.uint8)
+print(np.unpackbits(A95[:, np.newaxis], axis=1))
+print('*'*250)
+# №96
+print('*'*250)
+print('#96')
+A96 = np.random.randint(0, 2, (6, 3))
+print(np.unique(A96, axis=0))
+print('*'*250)
+# №97
+print('*'*250)
+print('#97')
+A97 = np.random.uniform(0, 1, 10)
+B97 = np.random.uniform(0, 1, 10)
+print('np.sum():\n', np.einsum('i->', A97))
+print('A*B:\n', np.einsum('i,i->i', A97, B97))
+print('np.inner(A, B):\n', np.einsum('i,i', A97, B97))
+print('np.outer(A, B):\n', np.einsum('i,j->ij', A97, B97))
+print('*'*250)
+# №99
+print('*'*250)
+print('#99')
+A99 = np.asarray([[1.0, 2.0, 3.0], [2.0, 0.0, 1.0], [2.5, 2.5, 9.9]])
+B99 = np.logical_and.reduce(np.mod(A99, 1) == 0, axis=-1)
+B99 &= (A99.sum(axis=-1) == 3)
+print(A99[B99])
+print('*'*250)
+# №100
+print('*'*250)
+print('#100')
+A100 = np.random.randint(0, 10**2, 100)
+N = np.random.randint(10**3)
+d = np.random.randint(0, A100.size, (N, A100.size))
+mean = A100[d].mean(axis=1)
+res = np.percentile(mean, [0.0, 95.0])
+print(res)
+print('*'*250)
