@@ -491,6 +491,21 @@ A87 = np.random.randint(0, 87, (16, 16))
 windows = np.lib.stride_tricks.sliding_window_view(A87, (4, 4))
 print(windows[::4, ::4, ...].sum(axis=(-2, -1)))
 print('*'*250)
+
+
+def iterate(Z):
+    
+    N = (Z[0:-2,0:-2] + Z[0:-2,1:-1] + Z[0:-2,2:] + Z[1:-1,0:-2] + Z[1:-1,2:] + Z[2:  ,0:-2] + Z[2:  ,1:-1] + Z[2:  ,2:])
+    birth = (N==3) & (Z[1:-1,1:-1]==0)
+    survive = ((N==2) | (N==3)) & (Z[1:-1,1:-1]==1)
+    Z[...] = 0
+    Z[1:-1,1:-1][birth | survive] = 1
+    return Z
+
+
+Z = np.random.randint(0,2,(50,50))
+for i in range(100): Z = iterate(Z)
+print(Z)
 # №89
 print('*'*250)
 print('#89')
@@ -569,6 +584,20 @@ print('A*B:\n', np.einsum('i,i->i', A97, B97))
 print('np.inner(A, B):\n', np.einsum('i,i', A97, B97))
 print('np.outer(A, B):\n', np.einsum('i,j->ij', A97, B97))
 print('*'*250)
+# №98
+print('*'*250)
+print('#98')
+phi = np.arange(0, 10*np.pi, 0.1)
+a = 1
+x = a*phi*np.cos(phi)
+y = a*phi*np.sin(phi)
+
+dr = (np.diff(x)**2 + np.diff(y)**2)**.5 # segment lengths
+r = np.zeros_like(x)
+r[1:] = np.cumsum(dr)                # integrate path
+r_int = np.linspace(0, r.max(), 200) # regular spaced path
+x_int = np.interp(r_int, r, x)       # integrate path
+y_int = np.interp(r_int, r, y)
 # №99
 print('*'*250)
 print('#99')
